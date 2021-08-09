@@ -38,8 +38,9 @@ class TestRedis:
         file = open(input_file, "r")
         lines = file.readlines()
         for line in lines:
-            key, value = line.split(" ")
-            self.connection.set(key, value)
+            if line is not None:
+                key, value = line.split(" ")
+                self.connection.set(key, value)
 
     def key_should_exist(self, key):
         exist = self.connection.exists(key)
