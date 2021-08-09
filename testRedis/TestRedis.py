@@ -41,10 +41,10 @@ class TestRedis:
         print("hi")
         for line in lines:
             if line is not None:
-                print("line")
-                key, value = line.split(" ")
-                print(key, value)
-                self.connection.set(key, value)
+                print(line)
+                key_value = line.split(" ")
+                print(key_value)
+                self.connection.set(key_value[0], key_value[1])
 
     def key_should_exist(self, key):
         exist = self.connection.exists(key)
