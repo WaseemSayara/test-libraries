@@ -1,4 +1,0 @@
-hello there
-its waseem from the file
-i like python
-thank you
