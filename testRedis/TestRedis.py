@@ -35,4 +35,13 @@ class TestRedis:
         self.connection.set(key, value)
 
     def key_should_exist(self, key):
-        return self.connection.exists(key)
+        exist = self.connection.exists(key)
+        if exist == 0:
+            print("key does not exist")
+            raise redis.connection.RedisError
+
+    def key_should_not_exist(self, key):
+        exist = self.connection.exists(key)
+        if exist == 1:
+            print("key exists")
+            raise redis.connection.RedisError
