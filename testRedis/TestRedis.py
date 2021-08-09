@@ -35,15 +35,11 @@ class TestRedis:
         self.connection.set(key, value)
 
     def make_key_value_from_file(self, input_file):
-        print("hi")
         file = open(input_file, "r")
         lines = file.readlines()
-        print("hi")
         for line in lines:
             if line is not None:
-                print(line)
                 key_value = line.split(" ")
-                print(key_value)
                 self.connection.set(key_value[0], key_value[1])
 
     def key_should_exist(self, key):
