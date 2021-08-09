@@ -34,6 +34,13 @@ class TestRedis:
     def add_key_value(self, key, value):
         self.connection.set(key, value)
 
+    def make_kay_value_from_file(self, file):
+        input_file = open(file, "r")
+        lines = input_file.readlines()
+        for line in lines:
+            key, value = line.split(" ")
+            self.add_key_value(key, value)
+
     def key_should_exist(self, key):
         exist = self.connection.exists(key)
         if exist == 0:
