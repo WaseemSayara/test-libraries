@@ -33,3 +33,6 @@ class TestRedis:
 
     def add_key_value(self, key, value):
         self.connection.set(key, value)
+
+    def key_should_exist(self, key):
+        return self.connection.exists(key)
