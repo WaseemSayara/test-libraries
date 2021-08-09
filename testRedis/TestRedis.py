@@ -39,7 +39,7 @@ class TestRedis:
         lines = input_file.readlines()
         for line in lines:
             key, value = line.split(" ")
-            self.add_key_value(key, value)
+            self.connection.set(key, value)
 
     def key_should_exist(self, key):
         exist = self.connection.exists(key)
