@@ -34,9 +34,9 @@ class TestRedis:
     def add_key_value(self, key, value):
         self.connection.set(key, value)
 
-    def make_key_value_from_file(self, file):
-        input_file = open(file, "r")
-        lines = input_file.readlines()
+    def make_key_value_from_file(self, input_file):
+        file = open(input_file, "r")
+        lines = file.readlines()
         for line in lines:
             key, value = line.split(" ")
             self.connection.set(key, value)
