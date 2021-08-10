@@ -1,6 +1,7 @@
 from kafka.admin import KafkaAdminClient, NewTopic
 from kafka import KafkaProducer, KafkaConsumer, errors
-import datetime
+import time
+
 
 class TestKafka:
 
@@ -56,7 +57,7 @@ class TestKafka:
             value = file.read()
             producer.send(topic, value.encode("utf-8"))
         except FileNotFoundError:
-            print("file ("+ str(input_file) + ") is not found")
+            print("file (" + str(input_file) + ") is not found")
             raise
 
     def kafka_consumer(self, topic, output_file, host="localhost:9092"):
@@ -82,7 +83,7 @@ class TestKafka:
             raise errors.InvalidTopicError
 
     def get_unique_topic(self):
-        current_date = datetime.datetime.now()
+        current_date = time.time() * 1000
         return "test_topic" + str(current_date)
 
     def compare_sent_and_consumed_files(self, sent_file_path, consumed_file_path):
