@@ -1,6 +1,6 @@
 from kafka.admin import KafkaAdminClient, NewTopic
 from kafka import KafkaProducer, KafkaConsumer, errors
-
+import datetime
 
 class TestKafka:
 
@@ -81,3 +81,19 @@ class TestKafka:
             print("file is empty")
             raise errors.InvalidTopicError
 
+    def get_unique_topic(self):
+        current_date = datetime.datetime.now()
+        return "test_topic" + str(current_date)
+
+    def compare_sent_and_consumed_files(self, sent_file_path, consumed_file_path):
+        sent_file = open(sent_file_path, "r")
+        sent_file_content = sent_file.read()
+        sent_file.close()
+        consumed_file = open(consumed_file_path, "r")
+        consumed_file_content = consumed_file.read()
+        consumed_file.close()
+        if sent_file_content == consumed_file_content:
+            print("the two files are identical")
+        else:
+            print("the two files are not identical")
+            raise SystemError
